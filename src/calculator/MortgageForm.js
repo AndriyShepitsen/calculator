@@ -19,6 +19,16 @@ class NormalLoginForm extends React.Component {
         monthlyPayment: 0
     }
 
+    componentDidMount() {
+        let payment = formula( this.state )
+
+        this.setState( {
+            monthlyPayment: payment.monthlyPayment,
+            amortization: payment.amortization
+        } );
+    }
+
+
     handleFormChange = ( e, name ) => {
         let value = parseFloat( e.target.value );
         this.setState( {
