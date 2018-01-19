@@ -1,6 +1,6 @@
-let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate ) => {
+let calculatePayment = (principal, years, rate, taxes, insurance, pmiRate) => {
     let monthlyRate = rate / 100 / 12;
-    let monthlyPayment = principal * monthlyRate / (1 - (Math.pow( 1 / (1 + monthlyRate), years * 12 )));
+    let monthlyPayment = principal * monthlyRate / (1 - (Math.pow(1 / (1 + monthlyRate), years * 12)));
 
     let monthlyPaymentFinal = monthlyPayment + (taxes + insurance) / 12;
 
@@ -23,13 +23,13 @@ let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate ) => 
             lvt = balance / initialLoanAmount
 
             if ( lvt > .8 ) {
-                pmi+=balance*pmiRate/100;
+                pmi += balance * pmiRate / 100;
             }
 
         }
 
 
-        amortization.push( {principalY: principalY, interestY: interestY, balance: balance} );
+        amortization.push({principalY: principalY, interestY: interestY, balance: balance});
     }
 
     let monthlyPaymentWithPmi = monthlyPaymentFinal + pmi / (years * 12);
@@ -37,10 +37,9 @@ let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate ) => 
     return {monthlyPayment: monthlyPaymentWithPmi.toFixed(2), amortization: amortization};
 };
 
-export default ( loan ) => {
+export default (loan) => {
 
-
-    return calculatePayment( loan.loanAmount, loan.loanTerm, loan.interestRate, loan.taxes, loan.insurance, loan.pmi )
+    return calculatePayment(loan.loanAmount, loan.loanTerm, loan.interestRate, loan.taxes, loan.insurance, loan.pmi)
 
 }
 
