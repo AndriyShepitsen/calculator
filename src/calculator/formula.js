@@ -34,7 +34,7 @@ let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate ) => 
 
     let monthlyPaymentWithPmi = monthlyPaymentFinal + pmi / (years * 12);
 
-    return {monthlyPayment: monthlyPaymentWithPmi, amortization: amortization};
+    return {monthlyPayment: monthlyPaymentWithPmi.toFixed(2), amortization: amortization};
 };
 
 export default ( loan ) => {
