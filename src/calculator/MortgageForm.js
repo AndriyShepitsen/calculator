@@ -64,7 +64,7 @@ class NormalLoginForm extends React.Component {
     render() {
         const {getFieldDecorator} = this.props.form;
         return (
-            <div style={{padding:'0px 5px'}}>
+            <div style={{padding: '0px 5px'}}>
                 <Form onSubmit={this.handleSubmit} className="login-form">
                     <Row gutter={8}>
                         <Col xs={24} sm={12} md={8} lg={6}>
@@ -159,16 +159,19 @@ class NormalLoginForm extends React.Component {
                         </Col>
                     </Row>
                     <FormItem style={{textAlign: "left"}}>
-                        <Button type="primary" htmlType="submit"
+                        <Button htmlType="submit"
                                 className="login-form-button">Calculate</Button>
                     </FormItem>
                 </Form>
                 {
-                    this.state.monthlyPayment > 0 && <span>
-                    <strong>Monthly payment:</strong>
-                        {this.state.monthlyPayment} $/month
-                    <AmortizationChart data={this.state.amortization}/>
-                </span>
+                    this.state.monthlyPayment > 0 &&
+                    <div>
+                        <div className={"monthlyPayment"}>
+                            <strong>Monthly payment: </strong>
+                            {this.state.monthlyPayment} $/Month
+                        </div>
+                        <AmortizationChart data={this.state.amortization}/>
+                    </div>
                 }
             </div>
 

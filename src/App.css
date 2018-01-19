@@ -1,3 +1,22 @@
+.monthlyPayment {
+    margin: 10px 0;
+}
+
+.login-form-button, .login-form-button:hover {
+    background: #b71c1c;
+    border: 0;
+    color: #ffffff;
+}
+
+.login-form-button:hover,
+.login-form-button:focus,
+.login-form-button:active {
+    background: #b71c1c;
+    opacity: .9;
+    border: 0;
+    color: #ffffff;
+}
+
 .ant-form-item-label {
     line-height: 1.5;
     width: 100%;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class AmortizationChart extends Component {
 
@@ -10,8 +10,10 @@ class AmortizationChart extends Component {
                     <td className="currency principal">{Math.round(year.principalY).toLocaleString()}</td>
                     <td className="stretch">
                         <div className="flex">
-                            <div className="bar principal" style={{flex: year.principalY, WebkitFlex: year.principalY}}></div>
-                            <div className="bar interest" style={{flex: year.interestY, WebkitFlex: year.interestY}}></div>
+                            <div className={"bar principal"}
+                                 style={{flex: year.principalY, WebkitFlex: year.principalY}}></div>
+                            <div className={"bar interest"}
+                                 style={{flex: year.interestY, WebkitFlex: year.interestY}}></div>
                         </div>
                     </td>
                     <td className="currency interest">{Math.round(year.interestY).toLocaleString()}</td>
