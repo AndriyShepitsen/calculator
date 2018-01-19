@@ -1,12 +1,14 @@
 import React from 'react';
 import {Form, Input, Button} from 'antd';
 import formula from "./formula"
+import AmortizationChart from "./AmortizationChart";
 
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
 
     state = {
+        amortization: [],
         homeValue: 100000,
         loanAmount: 80000,
         interestRate: 3,
@@ -18,14 +20,15 @@ class NormalLoginForm extends React.Component {
     }
 
     handleFormChange = ( e, name ) => {
-        let value = parseFloat(e.target.value);
+        let value = parseFloat( e.target.value );
         this.setState( {
             [name]: value
         }, () => {
             let payment = formula( this.state )
 
             this.setState( {
-                monthlyPayment: payment.monthlyPayment
+                monthlyPayment: payment.monthlyPayment,
+                amortization: payment.amortization
             } );
 
         } );
@@ -41,7 +44,8 @@ class NormalLoginForm extends React.Component {
 
 
                 this.setState( {
-                    monthlyPayment: payment.monthlyPayment
+                    monthlyPayment: payment.monthlyPayment,
+                    amortization: payment.amortization
                 } );
             }
         } );
@@ -135,28 +139,16 @@ class NormalLoginForm extends React.Component {
                                    onChange={( e ) => this.handleFormChange( e, 'insurance' )}/>
                         )}
                     </FormItem>
-                    {/*<FormItem>*/}
-                    {/*{*/}
-                    {/*<Input type="text" placeholder="Taxes" value={this.state.taxes}/>*/}
-                    {/*}*/}
-                    {/*</FormItem>*/}
-                    {/*<FormItem>*/}
-
-                    {/*<Input type="text" placeholder="PMI" value={this.state.pmi}/>*/}
-
-                    {/*</FormItem>*/}
-                    {/*<FormItem>*/}
-                    {/*<Input type="text" placeholder="Insurance" value={this.state.insurance}/>*/}
-
-                    {/*</FormItem>*/}
 
                     <FormItem>
                         <Button type="primary" htmlType="submit" className="login-form-button">Calculate</Button>
                     </FormItem>
+
                 </Form>
                 {this.state.monthlyPayment > 0 && <span>
                     <strong>Monthly payment:</strong>
                     {this.state.monthlyPayment} $/month
+                    <AmortizationChart data={this.state.amortization}/>
                 </span>}
             </div>
 
