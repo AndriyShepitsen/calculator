@@ -1,18 +1,46 @@
-export default (loan) => {
+let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate ) => {
+    let monthlyRate = rate / 100 / 12;
+    let monthlyPayment = principal * monthlyRate / (1 - (Math.pow( 1 / (1 + monthlyRate), years * 12 )));
 
-    console.log( "loan: " + JSON.stringify( loan, null, 2 ) + "formula.js, 3" );
+    let monthlyPaymentFinal = monthlyPayment + (taxes + insurance) / 12;
 
-    let monthlyInter = (loan.interestRate / 12)/100;
-    let numberOfMonth = loan.loanTerm * 12;
+    let balance = principal;
+    let initialLoanAmount = principal;
 
-    let totalLoanAmount = loan.loanAmount + loan.loanTerm * (loan.taxes + loan.insurance);
+    let amortization = [];
+    let pmi = 0;
+    let lvt = 0;
+    for ( let y = 0; y < years; y++ ) {
+        let interestY = 0;  //Interest payment for year y
+        let principalY = 0; //Principal payment for year y
+        for ( let m = 0; m < 12; m++ ) {
+            let interestM = balance * monthlyRate;       //Interest payment for month m
+            let principalM = monthlyPayment - interestM; //Principal payment for month m
+            interestY = interestY + interestM;
+            principalY = principalY + principalM;
+            balance = balance - principalM;
 
-    console.log( "totalLoanAmount: " + totalLoanAmount + " formula.js, 10" );
+            lvt = balance / initialLoanAmount
 
-    let monthlyPayment = totalLoanAmount*((monthlyInter*Math.pow(1+monthlyInter, numberOfMonth))/(Math.pow(1+monthlyInter, numberOfMonth)-1));
+            if ( lvt > .8 ) {
+                pmi+=balance*pmiRate/100;
+            }
 
-    monthlyPayment=monthlyPayment.toFixed(2)
+        }
 
-    return monthlyPayment;
+
+        amortization.push( {principalY: principalY, interestY: interestY, balance: balance} );
+    }
+
+    let monthlyPaymentWithPmi = monthlyPaymentFinal + pmi / (years * 12);
+
+    return {monthlyPayment: monthlyPaymentWithPmi, amortization: amortization};
+};
+
+export default ( loan ) => {
+
+
+    return calculatePayment( loan.loanAmount, loan.loanTerm, loan.interestRate, loan.taxes, loan.insurance, loan.pmi )
 
 }
+

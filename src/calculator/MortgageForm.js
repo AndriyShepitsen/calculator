@@ -25,7 +25,7 @@ class NormalLoginForm extends React.Component {
             let payment = formula( this.state )
 
             this.setState( {
-                monthlyPayment: payment
+                monthlyPayment: payment.monthlyPayment
             } );
 
         } );
@@ -39,8 +39,9 @@ class NormalLoginForm extends React.Component {
 
                 let payment = formula( this.state )
 
+
                 this.setState( {
-                    monthlyPayment: payment
+                    monthlyPayment: payment.monthlyPayment
                 } );
             }
         } );
