@@ -20,13 +20,15 @@
 
 .ant-form-item-label {
     line-height: 1.5;
+    font-weight: 600;
     width: 100%;
     min-width: 100%;
+    padding-bottom: 0;
     text-align: left;
 }
 
 .ant-form label {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .ant-form-item-control {
@@ -126,7 +128,7 @@ input[type=text] {
 
 table {
     font-family: Calibri, Calibri, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     border-collapse: collapse;
     font-weight: 300;
 }
