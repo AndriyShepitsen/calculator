@@ -1,6 +1,6 @@
-let calculatePayment = (principal, years, rate, taxes, insurance, pmiRate) => {
+let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate ) => {
     let monthlyRate = rate / 100 / 12;
-    let monthlyPayment = principal * monthlyRate / (1 - (Math.pow(1 / (1 + monthlyRate), years * 12)));
+    let monthlyPayment = principal * monthlyRate / (1 - (Math.pow( 1 / (1 + monthlyRate), years * 12 )));
 
     let monthlyPaymentFinal = monthlyPayment + (taxes + insurance) / 12;
 
@@ -29,17 +29,22 @@ let calculatePayment = (principal, years, rate, taxes, insurance, pmiRate) => {
         }
 
 
-        amortization.push({principalY: principalY, interestY: interestY, balance: balance});
+        amortization.push( {principalY: principalY, interestY: interestY, balance: balance} );
     }
 
     let monthlyPaymentWithPmi = monthlyPaymentFinal + pmi / (years * 12);
 
-    return {monthlyPayment: monthlyPaymentWithPmi.toFixed(2), amortization: amortization};
+    return {monthlyPayment: monthlyPaymentWithPmi.toFixed( 2 ), amortization: amortization};
 };
 
-export default (loan) => {
+export default ( loan ) => {
+    let parsedLoan = {};
 
-    return calculatePayment(loan.loanAmount, loan.loanTerm, loan.interestRate, loan.taxes, loan.insurance, loan.pmi)
+    for (let key in loan ) {
+        parsedLoan[key] = parseFloat((loan[key]+"").replace(/,/gi,""))
+    }
+
+    return calculatePayment( parsedLoan.homePrice - parsedLoan.downPayment, parsedLoan.loanTerm, parsedLoan.interestRate, parsedLoan.taxes, parsedLoan.insurance, parsedLoan.pmi )
 
 }
 
