@@ -55,24 +55,44 @@ class NormalLoginForm extends React.Component {
         let value = parseInput( ( e.target.value ) );
         var downPayment, downPaymentPercent, homePrice;
 
-
         switch (name) {
             case "homePrice":
-                homePrice = value
-                downPayment = parseInput( this.props.form.getFieldValue( "downPayment" ) );
-                downPaymentPercent = ( (downPayment / homePrice * 100) ).toFixed( 2 ).replace( ".00", "" )
-                this.props.form.setFieldsValue( {downPaymentPercent} )
+                homePrice = value;
+                let homePriceparsed = parseInt( homePrice );
+                if ( homePriceparsed > 0 ) {
+                    downPayment = parseInput( this.props.form.getFieldValue( "downPayment" ) );
+                    downPaymentPercent = ( (downPayment / homePrice * 100) ).toFixed( 2 ).replace( ".00", "" )
+                    let downPaymentPercentParsed = parseFloat( downPaymentPercent );
+
+                    if ( downPaymentPercentParsed > 100 ) {
+                        downPaymentPercentParsed = parseFloat( this.props.form.getFieldValue( "downPaymentPercent" ) );
+                        downPayment = processInput(homePriceparsed * (downPaymentPercentParsed / 100))
+                        this.props.form.setFieldsValue( {downPayment} )
+                    } else {
+                        this.props.form.setFieldsValue( {downPaymentPercent} )
+                    }
+
+
+                }
                 break;
             case "downPayment":
                 downPayment = value
                 homePrice = parseInput( this.props.form.getFieldValue( "homePrice" ) );
-                downPaymentPercent = ( (downPayment / homePrice * 100) ).toFixed( 2 ).replace( ".00", "" )
-                this.props.form.setFieldsValue( {downPaymentPercent} )
+                if ( homePrice > 0 ) {
+                    downPaymentPercent = ( (downPayment / homePrice * 100) ).toFixed( 2 ).replace( ".00", "" )
+                    this.props.form.setFieldsValue( {downPaymentPercent} )
+                }
                 break;
             case "downPaymentPercent":
                 downPaymentPercent = value;
-                homePrice = parseInput( this.props.form.getFieldValue( "homePrice" ) );
+                let number = parseInt( downPaymentPercent );
 
+                if ( number > 20 ) {
+                    this.props.form.setFieldsValue( {pmi: 0} )
+                } else {
+                    this.props.form.setFieldsValue( {pmi: 0.65} )
+                }
+                homePrice = parseInput( this.props.form.getFieldValue( "homePrice" ) );
                 downPayment = (( downPaymentPercent * homePrice ) / 100);
                 this.props.form.setFieldsValue( {downPayment: processInput( downPayment )} )
 
@@ -81,12 +101,15 @@ class NormalLoginForm extends React.Component {
                 console.log( "Unrecongnized change for downpayment computations" )
         }
 
-        let fields = this.getAllFields();
-        let payment = formula( fields )
-        this.setState( {
-            monthlyPayment: payment.monthlyPayment,
-            amortization: payment.amortization
-        } );
+        setTimeout( () => {
+            let fields = this.getAllFields();
+            let payment = formula( fields )
+            this.setState( {
+                monthlyPayment: payment.monthlyPayment,
+                amortization: payment.amortization
+            } );
+
+        }, 500 )
 
 
     }
@@ -138,7 +161,7 @@ class NormalLoginForm extends React.Component {
                                         return processInput( e.target.value.replace( /\D/g, "" ) );
                                     },
                                     initialValue: this.state.homePrice,
-                                    onChange: this.handleDownpaymentChange.bind( this ),
+                                    onChange: ( e ) => this.handleDownpaymentChange( e, "homePrice" ),
                                     rules: [ {
                                         required: false
                                     } ],
@@ -162,6 +185,9 @@ class NormalLoginForm extends React.Component {
                             </FormItem>
                             <FormItem label="%">
                                 {getFieldDecorator( 'downPaymentPercent', {
+                                    getValueFromEvent: ( e ) => {
+                                        return processInput( e.target.value.replace( /\D/g, "" ) );
+                                    },
                                     initialValue: this.state.downPaymentPercent,
                                     rules: [ {required: false} ],
                                     onChange: ( e ) => this.handleDownpaymentChange( e, 'downPaymentPercent' ),
@@ -174,6 +200,9 @@ class NormalLoginForm extends React.Component {
                         <Col xs={24} sm={12} md={8} lg={6}>
                             <FormItem label="Interest Rate">
                                 {getFieldDecorator( 'interestRate', {
+                                    getValueFromEvent: ( e ) => {
+                                        return processInput( e.target.value.replace( /\D/g, "" ) );
+                                    },
                                     initialValue: this.state.interestRate,
                                     rules: [ {required: true, message: 'Please input your an interest rate'} ],
                                 } )
@@ -187,6 +216,7 @@ class NormalLoginForm extends React.Component {
                         <Col xs={24} sm={12} md={12} lg={6}>
                             <FormItem label="Loan Term">
                                 {getFieldDecorator( 'loanTerm', {
+
                                     initialValue: this.state.loanTerm,
                                     rules: [ {required: true, message: 'Please input your loan term'} ],
                                 } )
@@ -200,6 +230,9 @@ class NormalLoginForm extends React.Component {
                         <Col xs={24} sm={12} md={12} lg={8}>
                             <FormItem label="Taxes">
                                 {getFieldDecorator( 'taxes', {
+                                    getValueFromEvent: ( e ) => {
+                                        return processInput( e.target.value.replace( /\D/g, "" ) );
+                                    },
                                     initialValue: this.state.taxes,
                                     rules: [ {required: false} ],
                                 } )
@@ -227,6 +260,9 @@ class NormalLoginForm extends React.Component {
                         <Col xs={24} sm={12} md={12} lg={8}>
                             <FormItem label="Home Insurance">
                                 {getFieldDecorator( 'insurance', {
+                                    getValueFromEvent: ( e ) => {
+                                        return processInput( e.target.value.replace( /\D/g, "" ) );
+                                    },
                                     initialValue: this.state.insurance,
                                     rules: [ {required: false} ],
                                 } )

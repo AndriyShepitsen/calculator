@@ -1,4 +1,5 @@
 export default ( userInput ) => {
+    userInput = userInput + "";
     let processeduserInput = userInput.replace( /,/gi, "" )
 
 
