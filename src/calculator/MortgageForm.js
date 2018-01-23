@@ -82,7 +82,7 @@ class NormalLoginForm extends React.Component {
                 break;
             case "downPaymentPercent":
                 downPaymentPercent = value;
-                let number = parseInt(downPaymentPercent);
+                let number = parseInt(downPaymentPercent, 10);
                 if ( number > 20 ) {
                     this.props.form.setFieldsValue({pmi: 0})
                 } else {
