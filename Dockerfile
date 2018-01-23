@@ -2,12 +2,20 @@ FROM node
 
 MAINTAINER Andriy Shepitsen
 
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
 RUN npm i -g yarn
+
+COPY . .
 
 RUN yarn
 
 RUN yarn build
 
-RUN node server.js
+EXPOSE 9000
+
+CMD [ "node", "server.js" ]
 
 
