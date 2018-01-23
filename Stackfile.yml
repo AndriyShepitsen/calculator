@@ -1,0 +1,5 @@
+calculator:
+  image: 'oslick/mortgage-calc:latest'
+  ports:
+    - '9000:9000'
+  target_num_containers: 1
