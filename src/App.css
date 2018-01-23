@@ -1,3 +1,7 @@
+.hideLabel label{
+    opacity: 0;
+}
+
 .monthlyPayment {
     font-family: Calibri, Calibri, sans-serif;
     margin: 10px 0;
