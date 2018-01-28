@@ -201,7 +201,8 @@ class MortgageForm extends React.Component {
         const {getFieldDecorator} = this.props.form;
         return (
             <div className={"form-root"}>
-                <Form onSubmit={this.handleSubmit} className="login-form">
+                <Form onSubmit={this.handleSubmit}
+                      className="mortgage-form">
                     <Row gutter={8}>
                         <Col xs={24} sm={12} md={8} lg={6}>
                             <FormItem label="Home Price"
@@ -220,6 +221,7 @@ class MortgageForm extends React.Component {
                                     } ],
                                 } )(
                                     <Input
+                                        type="text"
                                         prefix={<span className={"inactive"}>$</span>}
                                         placeholder="Home Price"/>
                                 )}
