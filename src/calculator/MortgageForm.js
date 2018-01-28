@@ -260,7 +260,7 @@ class MortgageForm extends React.Component {
                         <Col xs={24} sm={12} md={12} lg={8}>
                             <FormItem label={<span>
                             <Tooltip placement="topRight"
-                                     title="Will be added only if your down payment is less than 20%, you have to pay for Mortgage Insurance (PMI). It protects the lender in case you are not able to make your house payments."><i
+                                     title="Private Mortgage Insurance (PMI) will be added only if your down payment is less than 20%. It protects the lender in case you are not able to make your house payments."><i
                                 className="fa fa-info-circle" style={{color: '#494949'}}/> </Tooltip>
                                 Private Mortgage Insurance
                                 </span>
