@@ -1,7 +1,7 @@
-let calculatePayment = (principal, years, rate, taxes, insurance, pmiRate, downPaymentProcent) => {
+let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate, downPaymentProcent ) => {
     let monthlyPaymentWithPmi;
     let monthlyRate = rate / 100 / 12;
-    let monthlyPayment = principal * monthlyRate / (1 - (Math.pow(1 / (1 + monthlyRate), years * 12)));
+    let monthlyPayment = principal * monthlyRate / (1 - (Math.pow( 1 / (1 + monthlyRate), years * 12 )));
 
     let monthlyPaymentFinal = monthlyPayment + (taxes + insurance) / 12;
 
@@ -29,7 +29,7 @@ let calculatePayment = (principal, years, rate, taxes, insurance, pmiRate, downP
         }
 
 
-        amortization.push({principalY: principalY, interestY: interestY, balance: balance});
+        amortization.push( {principalY: principalY, interestY: interestY, balance: balance} );
     }
     if ( downPaymentProcent < 20 ) {
 
@@ -39,17 +39,20 @@ let calculatePayment = (principal, years, rate, taxes, insurance, pmiRate, downP
     }
 
 
-    return {monthlyPayment: monthlyPaymentWithPmi.toFixed(2), amortization: amortization};
+    return {monthlyPayment: monthlyPaymentWithPmi.toFixed( 2 ), amortization: amortization};
 };
 
-export default (loan) => {
+export default ( loan ) => {
     let parsedLoan = {};
 
     for ( let key in loan ) {
-        parsedLoan[ key ] = parseFloat((loan[ key ] + "").replace(/,/gi, ""))
+        let parseFloat2 = parseFloat( (loan[ key ] + "").replace( /,/gi, "" ) );
+        parsedLoan[ key ] = isNaN(parseFloat2) ? 0 : parseFloat2
     }
 
-    return calculatePayment(parsedLoan.homePrice - parsedLoan.downPayment, parsedLoan.loanTerm, parsedLoan.interestRate, parsedLoan.taxes, parsedLoan.insurance, parsedLoan.pmi, loan.downPaymentPercent)
+
+
+    return calculatePayment( parsedLoan.homePrice - parsedLoan.downPayment, parsedLoan.loanTerm, parsedLoan.interestRate, parsedLoan.taxes, parsedLoan.insurance, parsedLoan.pmi, loan.downPaymentPercent )
 
 }
 
