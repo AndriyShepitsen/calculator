@@ -99,11 +99,10 @@ class MortgageForm extends React.Component {
                     this.props.form.setFieldsValue( {taxes: taxes} )
                 }
 
-
                 break;
             case "downPayment":
                 downPayment = value;
-                if ( isNaN(downPayment) ) {
+                if ( isNaN( downPayment ) ) {
 
                     // this.props.form.setFieldsValue( {downPaymentPercent: "0"} )
 
@@ -237,9 +236,9 @@ class MortgageForm extends React.Component {
                                 <Col xs={18} sm={18} md={18} lg={18}>
                                     <FormItem label="Down Payment">
                                         {getFieldDecorator( 'downPayment', {
-                                            // getValueFromEvent: (e) => {
-                                            //     return processInput(e.target.value.replace(/\D/g, ""));
-                                            // },
+                                            getValueFromEvent: (e)  => {
+                                                return processInput(e.target.value.replace(/\D/g, ""));
+                                            },
                                             initialValue: this.state.downPayment,
                                             rules: [ {required: false} ],
                                             onChange: ( e ) => this.handleDownPaymentChange( e, 'downPayment' ),
@@ -360,7 +359,7 @@ class MortgageForm extends React.Component {
                     </FormItem>
                 </Form>
                 {
-                    this.state.monthlyPayment > 0 &&
+                    this.state.monthlyPayment > 0 && this.state.validateHomePrice.validateStatus !== "error" &&
                     <div>
                         <Card
                             style={{margin: '10px'}}
