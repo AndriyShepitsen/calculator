@@ -5,6 +5,11 @@ Built with [Create React App](https://github.com/facebook/create-react-app)
 
 Design Components: [Ant Design](https://ant.design/)
 
+### Install
+1. yarn
+
+2. yarn start
+
 ### Usage with iframe:
 ```
 <iframe
