@@ -189,7 +189,7 @@ class MortgageForm extends React.Component {
             isPriceValid = false;
             validateHomePrice = {
                 validateStatus: 'error',
-                // errorMsg: "Incorrect Home Price"
+                errorMsg: "Incorrect Home Price"
             };
         } else {
             validateHomePrice = {
@@ -284,7 +284,7 @@ class MortgageForm extends React.Component {
                             <FormItem label="Loan Term">
                                 {getFieldDecorator('loanTerm', {
                                     initialValue: this.state.loanTerm,
-                                    rules: [ {required: true, message: " "} ],
+                                    rules: [ {required: true, message: 'Please add your loan term'} ],
                                 })(
                                     <Input
                                         type="text"
