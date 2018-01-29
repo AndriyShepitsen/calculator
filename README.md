@@ -3,7 +3,9 @@
 
 Built with [Create React App](https://github.com/facebook/create-react-app)
 
-### Usage:
+Design Components: [Ant Design](https://ant.design/)
+
+### Usage with iframe:
 ```
 <iframe
    src="https://calculator.realsiter.com"
@@ -13,8 +15,13 @@ Built with [Create React App](https://github.com/facebook/create-react-app)
 </iframe>
 ```
 
+
 ### Examples
 <https://www.realtyadvisorselite.com/calculator>
 <https://www.goralhomes.com/calculator>
 
-#### License: [MIT](./LICENSE)
+### Contributing
+
+We'd greatly appreciate any contribution you make. :)
+
+#### This project is licensed under the terms of the: [MIT](./LICENSE)

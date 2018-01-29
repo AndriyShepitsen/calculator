@@ -68,11 +68,11 @@ header > h1 {
     color: #FFFFFF;
 }
 
-.principal {
+.principal-text {
     color: #1565c0;
 }
 
-.interest {
+.interest-text {
     color: #b71c1c;
 }
 
@@ -128,15 +128,13 @@ label {
 
 .bar.principal {
     background-color: #1565c0;
-    margin-right: .5px;
 }
 
 .bar.interest {
     background-color: #b71c1c;
-    margin-left: .5px;
 }
 
-.stretch {
+.graph {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
@@ -147,7 +145,7 @@ label {
     display: flex;
 }
 
-.currency::before {
+.money::before {
     content: "$";
 }
 
@@ -155,6 +153,3 @@ label {
     text-align: left;
 }
 
-.form > div {
-    margin: 6px 0;
-}
