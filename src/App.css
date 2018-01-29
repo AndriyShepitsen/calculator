@@ -1,6 +1,10 @@
-.monthly-payment {
-    color: #292929;
-    font-weight: 600;
+.monthly {
+    color: #393939;
+}
+
+.row-name {
+    min-width: 140px;
+    display: inline-block;
 }
 
 .inactive {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Form, Input, Button, Tooltip, Card} from 'antd';
+import {Row, Table, Col, Form, Input, Button, Tooltip, Card} from 'antd';
 import formula from "./formula"
 import AmortizationChart from "./AmortizationChart";
 import processInput from "./util/processInput";
@@ -335,7 +335,7 @@ class MortgageForm extends React.Component {
                                 {getFieldDecorator('pmi', {
                                     initialValue: this.state.pmi,
                                     rules: [ {required: false} ],
-                                })(<Input type="text" placeholder="Private Mortgage Insurance"
+                                })(<Input type="text" placeholder="Private Mortgage Insurance (PMI)"
                                           suffix={<span className={"inactive"}>%</span>}
                                           onChange={(e) => this.handleFormChange(e, 'pmi')}/>)}
                             </FormItem>
@@ -364,22 +364,37 @@ class MortgageForm extends React.Component {
                     this.state.monthlyPayment > 0 && this.state.validateHomePrice.validateStatus !== "error" &&
                     <div>
                         <Card
-                            style={{margin: '10px'}}
-                            title=
-                                {<div>
-                                    <span>Your loan: </span>
-                                    <span className={"monthly-payment"}>
-                                    {this.state.loan} $
-                                    </span>
-                                    <br/>
-                                    <span>Your payment: </span>
-                                    <span className={"monthly-payment"}>
-                                    ${this.state.monthlyPayment}/Month
-                                    </span>
-                                </div>}
+                            title={<div>
+                                <span className="row-name">Your loan: </span>
+                                <strong className={"money"}>
+                                    {this.state.loan}
+                                </strong>
+                            </div>}
                             bordered={true}
                         >
+                            <h3>Monthly payment:</h3>
+                            <div><span className="row-name">Tax:</span><span
+                                className="money">{this.state.monthlyPayment}</span>
+                            </div>
+                            <div><span
+                                className="row-name">Home Insurance:</span><span
+                                className="money">{this.state.monthlyPayment}</span>
+                            </div>
+                            <div><span className="row-name">PMI:</span><span
+                                className="money">{this.state.monthlyPayment}</span>
+                            </div>
+                            <div><span className="row-name">Principal & Interest:</span><span
+                                className="money">{this.state.monthlyPayment}</span>
+                            </div>
+                            <hr/>
+                            <div><span
+                                className="row-name">Your payment:</span><strong
+                                className="money monthly">{this.state.monthlyPayment}/Month</strong>
+                            </div>
+
                         </Card>
+                        <br/>
+                        <h2>Amortization Chart</h2>
                         <AmortizationChart data={this.state.amortization}/>
                     </div>
                 }
