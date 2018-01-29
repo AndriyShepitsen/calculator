@@ -206,7 +206,6 @@ class MortgageForm extends React.Component {
                     <Row gutter={8}>
                         <Col xs={24} sm={12} md={8} lg={6}>
                             <FormItem label="Home Price"
-
                                       validateStatus={this.state.validateHomePrice.validateStatus}
                                       help={this.state.validateHomePrice.errorMsg}
                             >
@@ -216,9 +215,7 @@ class MortgageForm extends React.Component {
                                     },
                                     initialValue: this.state.homePrice,
                                     onChange: (e) => this.handleDownPaymentChange(e, "homePrice"),
-                                    rules: [ {
-                                        required: false
-                                    } ],
+                                    rules: [ {required: true} ],
                                 })(
                                     <Input
                                         type="text"
@@ -270,7 +267,7 @@ class MortgageForm extends React.Component {
                                         return processInput(e.target.value.replace(/\D/g, ""));
                                     },
                                     initialValue: this.state.interestRate,
-                                    rules: [ {required: true, message: 'Please input your an interest rate'} ],
+                                    rules: [ {required: true, message: 'Please add your an interest rate'} ],
                                 })(<Input type="text" placeholder="Interest rate"
                                           suffix={<span className={"inactive"}>%</span>}
                                           onChange={(e) => this.handleFormChange(e, 'interestRate')}/>)}
@@ -307,7 +304,6 @@ class MortgageForm extends React.Component {
                             <Col xs={6} sm={6} md={6} lg={6} className={"hide-label"}>
                                 <FormItem label=" ">
                                     {getFieldDecorator('taxesPercent', {
-
                                         initialValue: this.state.taxesPercent,
                                         rules: [ {required: false} ],
                                         onChange: (e) => this.handleFormChange(e, 'taxesPercent'),
