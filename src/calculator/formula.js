@@ -1,4 +1,4 @@
-let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate, downPaymentPercent ) => {
+let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate, downPaymentProcent ) => {
     let monthlyPaymentWithPmi;
     rate = rate === 0 ? 0.0001 : rate;
     let monthlyRate = rate / 100 / 12;
@@ -34,30 +34,15 @@ let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate, down
 
         amortization.push( {principalY: principalY, interestY: interestY, balance: balance} );
     }
-    let mPmi = 0;
-    if ( downPaymentPercent < 20 ) {
-        mPmi = pmi / (years * 12);
+    if ( downPaymentProcent < 20 ) {
 
-        monthlyPaymentWithPmi = monthlyPaymentFinal + mPmi;
+        monthlyPaymentWithPmi = monthlyPaymentFinal + pmi / (years * 12);
     } else {
         monthlyPaymentWithPmi = monthlyPaymentFinal
     }
 
-    let mTaxes = parseFloat( (taxes / 12).toFixed( 2 ) );
-    let mInsurance = parseFloat( (insurance / 12).toFixed( 2 ) );
-    mPmi = parseFloat( mPmi.toFixed( 2 ) );
 
-    let paymentSplit = {
-        taxes: mTaxes,
-        insurance: mInsurance,
-        pmi: mPmi,
-        pi: parseFloat( (monthlyPaymentWithPmi - mTaxes - mInsurance - mPmi).toFixed( 2 ) )
-
-
-    };
-
-
-    return {monthlyPayment: monthlyPaymentWithPmi.toFixed( 2 ), paymentSplit, amortization: amortization};
+    return {monthlyPayment: monthlyPaymentWithPmi.toFixed( 2 ), amortization: amortization};
 };
 
 export default ( loan ) => {
@@ -65,8 +50,9 @@ export default ( loan ) => {
 
     for ( let key in loan ) {
         let parseFloat2 = parseFloat( (loan[ key ] + "").replace( /,/gi, "" ) );
-        parsedLoan[ key ] = isNaN( parseFloat2 ) ? 0 : parseFloat2
+        parsedLoan[ key ] = isNaN(parseFloat2) ? 0 : parseFloat2
     }
+
 
 
     return calculatePayment( parsedLoan.homePrice - parsedLoan.downPayment, parsedLoan.loanTerm, parsedLoan.interestRate, parsedLoan.taxes, parsedLoan.insurance, parsedLoan.pmi, loan.downPaymentPercent )
