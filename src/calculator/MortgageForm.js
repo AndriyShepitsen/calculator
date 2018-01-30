@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Table, Col, Form, Input, Button, Tooltip, Card} from 'antd';
+import {Row, Col, Form, Input, Button, Tooltip, Card} from 'antd';
 import formula from "./formula"
 import AmortizationChart from "./AmortizationChart";
 import processInput from "./util/processInput";
@@ -17,6 +17,7 @@ class MortgageForm extends React.Component {
             validateStatus: 'success',
             errorMsg: null,
         },
+        paymentSplit:null,
         amortization: [],
         homePrice: "100,000",
         downPayment: "20,000",
@@ -36,6 +37,7 @@ class MortgageForm extends React.Component {
         let payment = formula(fields)
 
         this.setState({
+            paymentSplit:payment.paymentSplit,
             monthlyPayment: payment.monthlyPayment,
             amortization: payment.amortization
         });
@@ -63,6 +65,7 @@ class MortgageForm extends React.Component {
 
             let payment = formula(fields);
             this.setState({
+                paymentSplit:payment.paymentSplit,
                 loan: computeLoan(fields),
                 monthlyPayment: payment.monthlyPayment,
                 amortization: payment.amortization
@@ -137,6 +140,7 @@ class MortgageForm extends React.Component {
             let fields = this.getAllFields();
             let payment = formula(fields)
             this.setState({
+                paymentSplit:payment.paymentSplit,
                 loan: computeLoan(fields),
                 monthlyPayment: payment.monthlyPayment,
                 amortization: payment.amortization
@@ -152,6 +156,7 @@ class MortgageForm extends React.Component {
                 let fields = this.getAllFields();
                 let payment = formula(fields)
                 this.setState({
+                    paymentSplit:payment.paymentSplit,
                     loan: computeLoan(fields),
                     monthlyPayment: payment.monthlyPayment,
                     amortization: payment.amortization
@@ -374,17 +379,17 @@ class MortgageForm extends React.Component {
                         >
                             <h3>Monthly payment:</h3>
                             <div><span className="row-name">Tax:</span><span
-                                className="money">{this.state.monthlyPayment}</span>
+                                className="money">{this.state.paymentSplit.taxes}</span>
                             </div>
                             <div><span
                                 className="row-name">Home Insurance:</span><span
-                                className="money">{this.state.monthlyPayment}</span>
+                                className="money">{this.state.paymentSplit.insurance}</span>
                             </div>
                             <div><span className="row-name">PMI:</span><span
-                                className="money">{this.state.monthlyPayment}</span>
+                                className="money">{this.state.paymentSplit.pmi}</span>
                             </div>
                             <div><span className="row-name">Principal & Interest:</span><span
-                                className="money">{this.state.monthlyPayment}</span>
+                                className="money">{this.state.paymentSplit.pi}</span>
                             </div>
                             <hr/>
                             <div><span
