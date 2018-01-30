@@ -19,6 +19,11 @@
     padding: 0 5px
 }
 
+.calculate-button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
 .calculate-button, .calculate-button:hover {
     background: #b71c1c;
     border: 0;
