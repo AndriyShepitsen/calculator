@@ -1,10 +1,71 @@
+.monthly {
+    color: #393939;
+}
+
+.row-name {
+    min-width: 140px;
+    display: inline-block;
+}
+
+.inactive {
+    color: rgba(0, 0, 0, .25)
+}
+
+.hide-label label {
+    opacity: 0;
+}
+
+.form-root {
+    padding: 0 5px
+}
+
+.calculate-button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+.calculate-button, .calculate-button:hover {
+    background: #b71c1c;
+    border: 0;
+    color: #ffffff;
+}
+
+.calculate-button:hover,
+.calculate-button:focus,
+.calculate-button:active {
+    background: #b71c1c;
+    opacity: .9;
+    border: 0;
+    color: #ffffff;
+}
+
+.ant-form-item-label {
+    line-height: 1.5;
+    font-weight: 600;
+    width: 100%;
+    min-width: 100%;
+    padding-bottom: 0;
+    text-align: left;
+}
+
+.ant-form label {
+    font-size: 14px;
+}
+
+.ant-form-item-control {
+    line-height: 1;
+}
+
+.ant-form-item {
+    font-family: inherit;
+    margin-bottom: 5px;
+}
 
 .App {
     max-width: 100%;
     width: 100%;
 }
 
-/*global*/
 h1, h2 {
     font-weight: 300;
 }
@@ -16,8 +77,16 @@ header > h1 {
     color: #FFFFFF;
 }
 
+.principal-text {
+    color: #1565c0;
+}
+
+.interest-text {
+    color: #b71c1c;
+}
+
 input[type=text] {
-    font-family: Calibri, Calibri, sans-serif;
+    font-family: inherit;
     -webkit-appearance: none;
     width: 100%;
     height: 24px;
@@ -32,7 +101,7 @@ input[type=text] {
 }
 
 table {
-    font-family: Calibri, Calibri, sans-serif;
+    font-family: inherit;
     font-size: 14px;
     border-collapse: collapse;
     font-weight: 300;
@@ -58,15 +127,6 @@ label {
     display: inline-block;
     width: 100%;
     text-align: left;
-}
-
-/*amortization chart*/
-.principal-text {
-    color: #1565c0;
-}
-
-.interest-text {
-    color: #b71c1c;
 }
 
 .bar {
@@ -98,110 +158,7 @@ label {
     content: "$";
 }
 
-/*custom hr*/
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-/*custom styles for an ant card*/
-.ant-card-head-title {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.ant-card-head {
-    min-height: 20px;
-}
-
-.ant-card-wider-padding .ant-card-head {
-    min-height: 20px;
-    padding: 10px;
-    background-color: rgba(235, 235, 235, 0.5);
-}
-
-.ant-card-wider-padding .ant-card-body {
-    padding: 10px;
-}
-
-.ant-card-body {
-    background-color: rgba(235, 235, 235, 0.5);
-    padding: 10px;
-}
-
-/*custom styles for an ant form*/
-
-.ant-form-item-label {
-    line-height: 1.5;
-    font-weight: 600;
-    width: 100%;
-    min-width: 100%;
-    padding-bottom: 0;
-    text-align: left;
-}
-
-.ant-form label {
-    font-size: 14px;
-}
-
-.ant-form-item-control {
-    line-height: 1;
-}
-
-.ant-form-item {
-    font-family: Calibri, Calibri, sans-serif;
-    margin-bottom: 5px;
-}
-
-/*button styles*/
-.calculate-button {
-    margin-top: 5px;
-    margin-bottom: 5px;
-
-}
-
-.calculate-button, .calculate-button:hover {
-    background: #b71c1c;
-    border: 0;
-    color: #ffffff;
-}
-
-.calculate-button:hover,
-.calculate-button:focus,
-.calculate-button:active {
-    background: #b71c1c;
-    opacity: .9;
-    border: 0;
-    color: #ffffff;
-}
-
-/*misc*/
 .left {
     text-align: left;
-}
-
-.monthly {
-    color: #393939;
-}
-
-.row-name {
-    min-width: 150px;
-    display: inline-block;
-}
-
-.inactive {
-    color: rgba(0, 0, 0, .25)
-}
-
-.hide-label label {
-    opacity: 0;
-}
-
-.form-root {
-    padding: 0 5px
 }
 
