@@ -17,7 +17,7 @@ class MortgageForm extends React.Component {
             validateStatus: 'success',
             errorMsg: null,
         },
-        paymentSplit:null,
+        paymentSplit: null,
         amortization: [],
         homePrice: "100,000",
         downPayment: "20,000",
@@ -37,7 +37,7 @@ class MortgageForm extends React.Component {
         let payment = formula(fields)
 
         this.setState({
-            paymentSplit:payment.paymentSplit,
+            paymentSplit: payment.paymentSplit,
             monthlyPayment: payment.monthlyPayment,
             amortization: payment.amortization
         });
@@ -65,7 +65,7 @@ class MortgageForm extends React.Component {
 
             let payment = formula(fields);
             this.setState({
-                paymentSplit:payment.paymentSplit,
+                paymentSplit: payment.paymentSplit,
                 loan: computeLoan(fields),
                 monthlyPayment: payment.monthlyPayment,
                 amortization: payment.amortization
@@ -140,7 +140,7 @@ class MortgageForm extends React.Component {
             let fields = this.getAllFields();
             let payment = formula(fields)
             this.setState({
-                paymentSplit:payment.paymentSplit,
+                paymentSplit: payment.paymentSplit,
                 loan: computeLoan(fields),
                 monthlyPayment: payment.monthlyPayment,
                 amortization: payment.amortization
@@ -156,7 +156,7 @@ class MortgageForm extends React.Component {
                 let fields = this.getAllFields();
                 let payment = formula(fields)
                 this.setState({
-                    paymentSplit:payment.paymentSplit,
+                    paymentSplit: payment.paymentSplit,
                     loan: computeLoan(fields),
                     monthlyPayment: payment.monthlyPayment,
                     amortization: payment.amortization
@@ -365,48 +365,47 @@ class MortgageForm extends React.Component {
                             className="calculate-button" onClick={this.handleSubmit}>Calculate</Button>
                     </FormItem>
                 </Form>
-                { this.props.form.getFieldValue("interestRate")!=="" &&
-                    this.state.monthlyPayment > 0 && this.state.validateHomePrice.validateStatus !== "error" &&
-                    <div>
-                        <Card
-                            title={<div>
-                                <span className="row-name">Your loan: </span>
-                                <strong className={"money"}>
-                                    {this.state.loan}
-                                </strong>
-                            </div>}
-                            bordered={true}
-                        >
-                            <h3>Monthly payment:</h3>
-                            <div><span className="row-name">Tax:</span><span
-                                className="money">{this.state.paymentSplit.taxes}</span>
-                            </div>
-                            <div><span
-                                className="row-name">Home Insurance:</span><span
-                                className="money">{this.state.paymentSplit.insurance}</span>
-                            </div>
-                            <div><span className="row-name">PMI:</span><span
-                                className="money">{this.state.paymentSplit.pmi}</span>
-                            </div>
-                            <div><span className="row-name">Principal & Interest:</span><span
-                                className="money">{this.state.paymentSplit.pi}</span>
-                            </div>
-                            <hr/>
-                            <div><span
-                                className="row-name">Your payment:</span><strong
-                                className="money monthly">{this.state.monthlyPayment}/Month</strong>
-                            </div>
+                {this.props.form.getFieldValue("interestRate") !== "" &&
+                this.state.monthlyPayment > 0 && this.state.validateHomePrice.validateStatus !== "error" &&
+                <div>
+                    <Card
+                        title={<div>
+                            <span className="row-name">Your loan: </span>
+                            <strong className={"money"}>
+                                {this.state.loan}
+                            </strong>
+                        </div>}
+                        bordered={true}
+                    >
+                        <h3>Monthly payment:</h3>
+                        <div><span className="row-name">Tax:</span><span
+                            className="money">{this.state.paymentSplit.taxes}</span>
+                        </div>
+                        <div><span
+                            className="row-name">Home Insurance:</span><span
+                            className="money">{this.state.paymentSplit.insurance}</span>
+                        </div>
+                        <div><span className="row-name">PMI:</span><span
+                            className="money">{this.state.paymentSplit.pmi}</span>
+                        </div>
+                        <div><span className="row-name">Principal & Interest:</span><span
+                            className="money">{this.state.paymentSplit.pi}</span>
+                        </div>
+                        <hr/>
+                        <div><span
+                            className="row-name">Your payment:</span><strong
+                            className="money monthly">{this.state.monthlyPayment}/Month</strong>
+                        </div>
 
-                        </Card>
-                        <br/>
-                        <h2>Amortization Chart</h2>
-                        <AmortizationChart data={this.state.amortization}/>
-                    </div>
+                    </Card>
+                    <br/>
+                    <h2>Amortization Chart</h2>
+                    <AmortizationChart data={this.state.amortization}/>
+                    <br/>
+                </div>
                 }
             </div>
-
-        )
-            ;
+        );
     }
 }
 
