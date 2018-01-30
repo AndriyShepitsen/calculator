@@ -24,6 +24,7 @@
     margin-bottom: 5px;
 
 }
+
 .calculate-button, .calculate-button:hover {
     background: #b71c1c;
     border: 0;
@@ -57,7 +58,7 @@
 }
 
 .ant-form-item {
-    font-family: inherit;
+    font-family: Calibri, Calibri, sans-serif;
     margin-bottom: 5px;
 }
 
@@ -86,7 +87,7 @@ header > h1 {
 }
 
 input[type=text] {
-    font-family: inherit;
+    font-family: Calibri, Calibri, sans-serif;
     -webkit-appearance: none;
     width: 100%;
     height: 24px;
@@ -101,7 +102,7 @@ input[type=text] {
 }
 
 table {
-    font-family: inherit;
+    font-family: Calibri, Calibri, sans-serif;
     font-size: 14px;
     border-collapse: collapse;
     font-weight: 300;
