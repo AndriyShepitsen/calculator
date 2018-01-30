@@ -65,7 +65,7 @@ class MortgageForm extends React.Component {
 
             let payment = formula(fields);
             this.setState({
-                paymentSplit: payment.paymentSplit,
+                paymentSplit:payment.paymentSplit,
                 loan: computeLoan(fields),
                 monthlyPayment: payment.monthlyPayment,
                 amortization: payment.amortization
@@ -402,7 +402,6 @@ class MortgageForm extends React.Component {
                         <br/>
                         <h2>Amortization Chart</h2>
                         <AmortizationChart data={this.state.amortization}/>
-                        <br/>
                     </div>
                 }
             </div>
