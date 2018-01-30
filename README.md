@@ -26,8 +26,4 @@ Design Components: [Ant Design](https://ant.design/)
 
 <https://www.goralhomes.com/calculator>
 
-### Contributing
-
-We'd greatly appreciate any contribution you make. :)
-
 #### This project is licensed under the terms of the: [MIT](./LICENSE)
