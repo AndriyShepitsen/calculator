@@ -275,9 +275,9 @@ class MortgageForm extends React.Component {
                         <Col xs={24} sm={12} md={8} lg={6} style={{height: 'auto', minHeight: 'auto'}}>
                             <FormItem label="Interest Rate">
                                 {getFieldDecorator('interestRate', {
-                                    getValueFromEvent: (e) => {
-                                        return processInput(e.target.value.replace(/\D/g, ""));
-                                    },
+                                    // getValueFromEvent: (e) => {
+                                    //     return processInput(e.target.value.replace(/\D/g, ""));
+                                    // },
                                     initialValue: this.state.interestRate,
                                     rules: [ {required: true, message: 'Please add your an interest rate'} ],
                                 })(<Input type="text" placeholder="Interest rate"
@@ -365,7 +365,7 @@ class MortgageForm extends React.Component {
                             className="calculate-button" onClick={this.handleSubmit}>Calculate</Button>
                     </FormItem>
                 </Form>
-                {
+                { this.props.form.getFieldValue("interestRate")!=="" &&
                     this.state.monthlyPayment > 0 && this.state.validateHomePrice.validateStatus !== "error" &&
                     <div>
                         <Card
