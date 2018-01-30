@@ -2,9 +2,7 @@ let calculatePayment = ( principal, years, rate, taxes, insurance, pmiRate, down
     let monthlyPaymentWithPmi;
     rate = rate === 0 ? 0.0001 : rate;
     let monthlyRate = rate / 100 / 12;
-    console.log( "monthlyRate: " + monthlyRate + " formula.js, 4" );
     let monthlyPayment = principal * monthlyRate / (1 - (Math.pow( 1 / (1 + monthlyRate), years * 12 )));
-    console.log( "monthlyPayment: " + monthlyPayment + " formula.js, 5" );
 
     let monthlyPaymentFinal = monthlyPayment + (taxes + insurance) / 12;
 
