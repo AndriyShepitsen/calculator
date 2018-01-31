@@ -116,12 +116,14 @@ hr {
 
 .ant-card-head {
     min-height: 20px;
+    padding: 10px;
+    background-color: rgba(235, 235, 235, 0.5) !important;
 }
 
 .ant-card-wider-padding .ant-card-head {
     min-height: 20px;
     padding: 10px;
-    background-color: rgba(235, 235, 235, 0.5);
+    background-color: rgba(235, 235, 235, 0.5) !important;
 }
 
 .ant-card-wider-padding .ant-card-body {
