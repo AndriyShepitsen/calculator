@@ -359,16 +359,16 @@ class MortgageForm extends React.Component {
                             </FormItem>
                         </Col>
                     </Row>
-                    <FormItem className={"left"}>
+{/*                    <FormItem className={"left"}>
                         <Button
                             htmlType="submit"
                             className="calculate-button" onClick={this.handleSubmit}>
                             <i className="fa fa-calculator"/> Calculate</Button>
-                    </FormItem>
+                    </FormItem>*/}
                 </Form>
                 {this.props.form.getFieldValue("interestRate") !== "" &&
                 this.state.monthlyPayment > 0 && this.state.validateHomePrice.validateStatus !== "error" &&
-                <div>
+                <div id="loanCard">
                     <Card
                         title={<div>
                             <span className="row-name">Your loan: </span>

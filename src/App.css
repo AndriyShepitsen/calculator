@@ -109,6 +109,14 @@ hr {
 }
 
 /*custom styles for an ant card*/
+#loanCard .ant-card-head {
+    background-color: #b71c1c !important;
+}
+
+#loanCard .ant-card-head-title {
+    color: #ffffff;
+}
+
 .ant-card-head-title {
     padding-top: 0;
     padding-bottom: 0;
@@ -117,7 +125,7 @@ hr {
 .ant-card-head {
     min-height: 20px;
     padding: 10px;
-    background-color: rgba(235, 235, 235, 0.5) !important;
+    /*background-color: rgba(235, 235, 235, 0.5) !important;*/
 }
 
 .ant-card-wider-padding .ant-card-head {
